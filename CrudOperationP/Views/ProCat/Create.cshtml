@@ -1,0 +1,34 @@
+﻿@model CrudOperationP.Models.Category
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+@using (Html.BeginForm("Create", "ProCat", FormMethod.Post, new {enctype="multipart/form_data" }))
+            {
+                <table class="table">
+                    <tr>
+                        <td>Enter Product Name</td>
+                        <td>@Html.EditorFor(Model => Model.ProductName, new { HtmlAttribute = new { @class = "form-control" } })</td>
+                    </tr>
+
+                    <tr>
+                        <td>Enter Category id</td>
+                        <td>@Html.EditorFor(Model => Model.CategoryId, new { HtmlAttribute = new { @class = "form-control" } })</td>
+                    </tr>
+
+                    <tr>
+                        <td>Enter Category Name</td>
+                        <td>@Html.EditorFor(Model => Model.CategoryName, new { HtmlAttribute = new { @class = "form-control" } })</td>
+                    </tr>
+
+                    <tr>
+                        <td calspan="2">
+                            <input type="submit" name="submit" value="Add data" class="btn btn-success" />
+                        </td>
+                    </tr>
+                </table>
+            }
+
+

@@ -1,0 +1,46 @@
+﻿@*@model List<CrudOperationP.Models.Category>*@
+
+@using CrudOperationP.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.IPagedList<Category>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>ALL Product</h2>
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>Product Id</th>
+        <th>Product Name</th>
+        <th>Category Id</th>
+        <th>Category Name</th>
+        <th>Operations</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ProductId</td>
+            <td>@item.ProductName</td>
+            <td>@item.CategoryId</td>
+            <td>@item.CategoryName</td>
+            <td>
+                <a href="@Url.Action("Edit","ProCat",new {@id=item.ProductId})" class="btn btn-warning">Edit</a>
+
+                <a href="@Url.Action("Delete","ProCat",new {@id=item.ProductId})" class="btn btn-danger"
+                   onclick="return confirm('Are yor sure you want to delete @item.ProductName ?')">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+
+<a href="@Url.Action("Create","ProCat")" class="btn btn-primary">Click Here to Add a New Product</a>
+
+
+<div class="pagination" style="margin-left:600px">
+    page @(Model.PageCount < Model.PageNumber ? 0:Model.PageNumber)/@Model.PageCount)
+</div>
+<div class="pagination" style="margin-left:600px">
+    @Html.PagedListPager(Model, Page => Url.Action("index", new { Page=Page}))
+</div>
